@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You Mama 💗</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #ff9ecf);
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* الصناديق */
+.box {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 30px 40px;
+    border-radius: 20px;
+    color: #333;
+    backdrop-filter: blur(6px);
+    border: 2px solid #ff7fbf;
+    box-shadow: 0px 4px 15px rgba(255, 150, 200, 0.3);
+    margin: 20px auto;
+    max-width: 500px;
+    position: relative;
+    z-index: 1; /* فوق الخلفية */
+}
+
+/* العناوين */
+h1,h2 {color: #ff4f98; margin:10px 0;}
+p {color:#444; font-size:18px;}
+
+/* الأزرار */
+button {
+    margin-top:10px; padding:12px 25px;
+    border:none; border-radius:10px;
+    background:#ff4f98; color:white;
+    font-size:16px; cursor:pointer;
+    transition:0.3s;
+}
+button:hover {background:#ff1e73;}
+
+/* الرسائل المنبثقة */
+.message-popup {
+    position: fixed; top:50%; left:50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background:#fff; color:#333; padding:25px 35px;
+    border-radius:15px; text-align:center;
+    width:300px; opacity:0; pointer-events:none;
+    transition:0.4s; border:2px solid #ff7fbf;
+    box-shadow:0px 4px 20px rgba(255,150,200,0.5);
+    z-index: 9999;
+}
+.show {opacity:1; pointer-events:auto; transform: translate(-50%, -50%) scale(1);}
+.close-btn {margin-top:15px; padding:10px 20px; background:#ff4f98; color:white; border:none; border-radius:10px; cursor:pointer;}
+.close-btn:hover {background:#ff1e73;}
+
+/* الاقتباسات */
+.quote {font-size:20px; color:#ff4f98; margin:10px 0;}
+
+/* textarea */
+textarea {width:100%; height:100px; padding:10px; border-radius:10px; border:2px solid #ff7fbf; margin-top:10px; font-size:16px; resize:none;}
+
+/* موسيقى */
+audio {margin-top:15px;}
+</style>
+</head>
+<body>
+
+<!-- الصفحة الرئيسية -->
+<div class="box">
+<h1>I Love You Mama ❤️</h1>
+<p>Welcome to the special website for your mom 💗</p>
+</div>
+
+<!-- قسم الهدايا -->
+<div class="box">
+<h2>Gift Messages 🎁</h2>
+<button onclick="showGiftMessage()">Show a Gift</button>
+</div>
+
+<!-- الرسالة المنبثقة -->
+<div class="message-popup" id="msgBox">
+<p id="messageText"></p>
+<button class="close-btn" onclick="closeMessage()">Close</button>
+</div>
+
+<!-- رسالة طويلة -->
+<div class="box">
+<h2>Long Message 💌</h2>
+<p>أمي… أنتِ كل شيء في حياتي. شكراً لكل حب وعطف، لكل لحظة صبر وعطاء، لكل ضحكة أعدت لي روحي. أحبك بلا حدود ❤️</p>
+</div>
+
+<!-- كتابة رسالة الزائر -->
+<div class="box">
+<h2>Write Your Message ✏️</h2>
+<textarea id="userMessage" placeholder="اكتب رسالتك هنا..."></textarea><br>
+<button onclick="submitMessage()">Send</button>
+</div>
+
+<!-- الاقتباسات -->
+<div class="box">
+<h2>Quotes 💖</h2>
+<p class="quote" id="quoteText"></p>
+</div>
+
+<!-- التهنئة والاحتفال -->
+<div class="box">
+<h2>Celebrate 🎉</h2>
+<p>أمي… أحبك جداً 💗</p>
+<audio controls autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+</div>
+
+<script>
+// ===== رسائل الهدايا =====
+const giftMessages = [
+"أمي… أنتِ جنتي في الدنيا ❤️",
+"شكراً يا أمي على كل حب وعطف 💕",
+"وجودك في حياتي نعمة كبيرة 🌹",
+"يا أمي أنتِ القوة والحنان 💗",
+"لو قلت أحبك ألف مرة… ما يكفي 🤍",
+"أمي… أنتِ الضحكة اللي ترجع لي روحي ❤️",
+"ربي يحفظك لي دايم يا أغلى إنسانة 🌸"
+];
+function showGiftMessage(){
+const randomMessage = giftMessages[Math.floor(Math.random()*giftMessages.length)];
+document.getElementById("messageText").innerText=randomMessage;
+document.getElementById("msgBox").classList.add("show");
+}
+function closeMessage(){document.getElementById("msgBox").classList.remove("show");}
+
+// ===== رسالة الزائر =====
+function submitMessage(){
+const userMessage=document.getElementById("userMessage").value;
+if(userMessage.trim()===""){alert("الرجاء كتابة رسالة!");return;}
+alert("رسالتك تم إرسالها بنجاح 💗\n\n"+userMessage);
+document.getElementById("userMessage").value="";
+}
+
+// ===== الاقتباسات =====
+const quotes=["الأم هي كل شيء في الحياة 💗","حب الأم لا يُقارن بشيء 🌸","أمي، أنتِ أعظم هدية من الله ❤️","الحنان والحب كله من أمي 🤍","الأم هي القلب الذي لا يموت 💕"];
+let quoteIndex=0;
+function showQuote(){document.getElementById("quoteText").innerText=quotes[quoteIndex]; quoteIndex=(quoteIndex+1)%quotes.length;}
+setInterval(showQuote,3000);
+
+// ===== قلوب في الخلفية كل 0.8 ثانية =====
+setInterval(()=>{
+    const heart = document.createElement("div");
+    heart.innerText = "❤️";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = "-50px";
+    heart.style.fontSize = Math.random()*30+15+"px";
+    heart.style.zIndex = "0"; // في الخلفية
+    heart.style.pointerEvents = "none";
+    document.body.appendChild(heart);
+    let top=-50;
+    const fall=setInterval(()=>{
+        if(top>window.innerHeight){heart.remove(); clearInterval(fall);}
+        else{top+=2; heart.style.top=top+"px";}
+    },20);
+},800);
+
+// ===== Confetti في الخلفية كل 1.2 ثانية =====
+setInterval(()=>{
+    const confetti = document.createElement("div");
+    confetti.innerText = "🎉";
+    confetti.style.position = "fixed";
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.top = "-50px";
+    confetti.style.fontSize = Math.random()*30+20+"px";
+    confetti.style.zIndex = "0"; // في الخلفية
+    confetti.style.pointerEvents = "none";
+    document.body.appendChild(confetti);
+    let top=-50;
+    const fall=setInterval(()=>{
+        if(top>window.innerHeight){confetti.remove(); clearInterval(fall);}
+        else{top+=3; confetti.style.top=top+"px";}
+    },20);
+},1200);
+</script>
+</body>
+</html>
+]
